@@ -3,11 +3,8 @@
   - Mülleimer oder Haken
   - Beachten: verschiedene Müllsorten (rest/bio/playstik/papier)
   - Einheit zum Messen von Müll (Volumen bzw. Anzahl Säcke, Gewicht)
--->
 
-<template>
-  <div>
-    <dropdown
+  <dropdown
       :label="'Jahr'"
       :options="[2020,2021]"
     />
@@ -22,6 +19,42 @@
     <switcher
       :label="'Müll'"
       :options="['Plastik', 'Papier', 'Rest']"
+    />
+-->
+
+<template>
+  <div class="grid grid-rows-6 grid-cols-12 gap-4">
+    <dropdown
+      class="col-start-1 col-end-3 row-start-1 row-end-2"
+      :label="'Jahr'"
+      :options="[2020,2021]"
+    />
+    <dropdown
+      class="col-start-3 col-end-5 row-start-1 row-end-2"
+      :label="'Monat'"
+      :options="['Januar', 'Februar', 'März']"
+    />
+    <checkbox
+      class="col-start-5 col-end-11 row-start-1 row-end-2"
+      :label="'Müll'"
+      :options="['Plastik', 'Papier', 'Rest']"
+    />
+    <dropdown
+      class="col-start-11 col-end-13 row-start-1 row-end-2"
+      :label="'Offene Menge'"
+      :options="['Monat', 'Jahr']"
+    />
+    <div id="bar_canvas" class="col-start-1 col-end-11 row-start-2 row-end-6" />
+    <div id="graph_canvas" class="col-start-11 col-end-13 row-start-2 row-end-6" />
+    <switcher
+      class="col-start-1 col-end-5 row-start-6 row-end-7"
+      :label="'Darstellung'"
+      :options="['Anteilig', 'Gesamt']"
+    />
+    <checkbox
+      class="col-start-5 col-end-11 row-start-6 row-end-7"
+      :label="'Darstellung'"
+      :options="['Grenzwert']"
     />
   </div>
 </template>
@@ -43,4 +76,16 @@ export default {
 </script>
 
 <style scoped>
+  #bar_canvas{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: red;
+  }
+   #graph_canvas{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: gray;
+  }
 </style>
