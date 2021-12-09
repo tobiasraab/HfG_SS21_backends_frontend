@@ -7,14 +7,36 @@
 
 <template>
   <div>
-    <p>fancy datenvisualisierung</p>
+    <dropdown
+      :label="'Jahr'"
+      :options="[2020,2021]"
+    />
+    <dropdown
+      :label="'Monat'"
+      :options="['Januar', 'Februar', 'März']"
+    />
+    <checkbox
+      :label="'Müll'"
+      :options="['Plastik', 'Papier', 'Rest']"
+    />
+    <switcher
+      :label="'Müll'"
+      :options="['Plastik', 'Papier', 'Rest']"
+    />
   </div>
 </template>
 
 <script>
+import dropdown from '~/components/templates/dropdown.vue'
+import checkbox from '~/components/templates/checkbox.vue'
+import switcher from '~/components/templates/switcher.vue'
+
 export default {
   name: 'Start',
   components: {
+    dropdown,
+    checkbox,
+    switcher
   },
   layout: 'main-layout'
 }
