@@ -102,7 +102,7 @@ export default {
 
 <style scoped>
   .navTopMenu-currentSite {
-    color: #223127;
+    color: #585481;
     font-family: "silkamedium", sans-serif;
     font-size: 18px;
     line-height: 64px;
@@ -111,7 +111,7 @@ export default {
 
   .navSideMenu-currentSite {
     position: absolute;
-    color: #223127;
+    color: #585481;
     font-family: "silkamedium", sans-serif;
     font-size: 18px;
     line-height: 64px;
