@@ -46,7 +46,7 @@ export default {
 }
 select{
   height: 40px;
-
+  width: 100%;
   background-color: #277C9D;
   color: #ffffff;
 
