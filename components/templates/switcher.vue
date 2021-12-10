@@ -66,6 +66,7 @@ export default {
 }
 .switcher-item-2{
   right: 0%;
+   border-radius: 0px 4px 4px 0px;
 }
 .switcher-item-active{
   background-color: #227C9D;
