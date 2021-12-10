@@ -44,8 +44,8 @@
       :label="'Offene Menge'"
       :options="['Monat', 'Jahr']"
     />
-    <div id="bar_canvas" class="col-start-1 col-end-11 row-start-2 row-end-6" />
-    <div id="graph_canvas" class="col-start-11 col-end-13 row-start-2 row-end-6" />
+    <graph id="graph_canvas" class="col-start-1 col-end-11 row-start-2 row-end-6" />
+    <bar id="bar_canvas" class="col-start-11 col-end-13 row-start-2 row-end-6" />
     <switcher
       class="col-start-1 col-end-5 row-start-6 row-end-7"
       :label="'Darstellung'"
@@ -63,13 +63,17 @@
 import dropdown from '~/components/templates/dropdown.vue'
 import checkbox from '~/components/templates/checkbox.vue'
 import switcher from '~/components/templates/switcher.vue'
+import bar from '~/components/templates/bar.vue'
+import graph from '~/components/templates/graph.vue'
 
 export default {
   name: 'Start',
   components: {
     dropdown,
     checkbox,
-    switcher
+    switcher,
+    bar,
+    graph
   },
   layout: 'main-layout'
 }
@@ -80,12 +84,10 @@ export default {
     position: relative;
     width: 100%;
     height: 100%;
-    background-color: red;
   }
    #graph_canvas{
     position: relative;
     width: 100%;
     height: 100%;
-    background-color: gray;
   }
 </style>
