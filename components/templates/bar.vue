@@ -25,7 +25,7 @@ export default {
   mounted () {
     this.$anime({
       targets: '#bar',
-      height: ((this.barProgress / this.barMax) * 100).toString() + '%',
+      height: ((this.$store.state.bar.progress / this.$store.state.bar.max) * 100).toString() + '%',
       easing: 'linear',
       duration: 2000
     })

@@ -28,21 +28,25 @@
       class="col-start-1 col-end-3 row-start-1 row-end-2"
       :label="'Jahr'"
       :options="[2020,2021]"
+      :mutation="'updateGraphYear'"
     />
     <dropdown
       class="col-start-3 col-end-5 row-start-1 row-end-2"
       :label="'Monat'"
       :options="['Januar', 'Februar', 'März']"
+      :mutation="'updateGraphMonth'"
     />
     <checkbox
       class="col-start-5 col-end-11 row-start-1 row-end-2"
       :label="'Müll'"
-      :options="['Plastik', 'Papier', 'Rest']"
+      :options="$store.state.graph.garbage"
+      :mutation="'updateGraphCheckedGarbage'"
     />
     <dropdown
       class="col-start-11 col-end-13 row-start-1 row-end-2"
       :label="'Offene Menge'"
       :options="['Monat', 'Jahr']"
+      :mutation="'updateBarTimeFormat'"
     />
     <graph id="graph_canvas" class="col-start-1 col-end-11 row-start-2 row-end-6" />
     <bar id="bar_canvas" class="col-start-11 col-end-13 row-start-2 row-end-6" />
@@ -50,11 +54,13 @@
       class="col-start-1 col-end-5 row-start-6 row-end-7"
       :label="'Darstellung'"
       :options="['Anteilig', 'Gesamt']"
+      :mutation="'updateGraphPresentation'"
     />
     <checkbox
       class="col-start-5 col-end-11 row-start-6 row-end-7"
       :label="'Darstellung'"
-      :options="['Grenzwert']"
+      :options="$store.state.graph.limit"
+      :mutation="'updateGraphCheckedLimit'"
     />
   </div>
 </template>

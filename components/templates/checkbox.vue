@@ -31,12 +31,24 @@ export default {
     options: {
       default: undefined,
       type: Array
+    },
+    mutation: {
+      default: undefined,
+      type: String
     }
   },
   data () {
     return {
       checkedItems: []
     }
+  },
+  watch: {
+    checkedItems () {
+      this.$store.commit(this.mutation, this.checkedItems)
+    }
+  },
+  mounted () {
+    this.$store.commit(this.mutation, this.checkedItems)
   }
 }
 </script>

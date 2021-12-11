@@ -25,12 +25,28 @@ export default {
     options: {
       default: undefined,
       type: Array
+    },
+    store: {
+      default: undefined,
+      type: String
+    },
+    mutation: {
+      default: undefined,
+      type: String
     }
   },
   data () {
     return {
       selected: this.options[0]
     }
+  },
+  watch: {
+    selected () {
+      this.$store.commit(this.mutation, this.selected)
+    }
+  },
+  mounted () {
+    this.$store.commit(this.mutation, this.selected)
   }
 }
 </script>

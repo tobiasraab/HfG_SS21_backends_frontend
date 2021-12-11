@@ -8,10 +8,10 @@
           <NuxtLink class="nav-top-link menuLink" to="/">
             Verlauf
           </NuxtLink>
-          <NuxtLink class="nav-top-link menuLink projects" to="/projects">
+          <NuxtLink class="nav-top-link menuLink" to="/info">
             Info
           </NuxtLink>
-          <NuxtLink class="nav-top-link menuLink" to="/contact">
+          <NuxtLink class="nav-top-link menuLink" to="/settings">
             Einstellungen
           </NuxtLink>
         </div>
@@ -28,10 +28,10 @@
         <NuxtLink id="navSideLinkAbout" class="nav-side-link menuLink" to="/">
           Entwicklung
         </NuxtLink>
-        <NuxtLink id="navSideLinkProjects" class="nav-side-link menuLink projects" to="/projects">
+        <NuxtLink id="navSideLinkProjects" class="nav-side-link menuLink " to="/info">
           Info
         </NuxtLink>
-        <NuxtLink id="navSideLinkContact" class="nav-side-link menuLink" to="/contact">
+        <NuxtLink id="navSideLinkContact" class="nav-side-link menuLink" to="/settings">
           Einstellungen
         </NuxtLink>
       </div>
@@ -215,10 +215,4 @@ export default {
     color: #ffffff;
     font-family: "silkabold";
   }
-
-  a.nuxt-link-active.projects {
-    color: #ffffff;
-    font-family: "silkabold";
-  }
-
 </style>

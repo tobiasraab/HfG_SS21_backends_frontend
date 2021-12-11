@@ -16,11 +16,10 @@
       <button
         class="switcher-item switcher-item-2"
         :class="{'switcher-item-active': !toggleState, 'switcher-item-passive': toggleState}"
-        @click="switcherClick()"
+        @click="switcherClick"
       >
         {{ options[1] }}
       </button>
-      <h1>{{ toggleState }}</h1>
     </div>
   </div>
 </template>
@@ -36,12 +35,31 @@ export default {
     options: {
       default: undefined,
       type: Array
+    },
+    mutation: {
+      default: undefined,
+      type: String
     }
   },
   data () {
     return {
       toggleState: true
     }
+  },
+  watch: {
+    toggleState () {
+      if (this.toggleState === true) {
+        const data = 'relativ'
+        this.$store.commit(this.mutation, data)
+      } else if (this.toggleState === false) {
+        const data = 'absolut'
+        this.$store.commit(this.mutation, data)
+      }
+    }
+  },
+  mounted () {
+    const data = 'relativ'
+    this.$store.commit(this.mutation, data)
   },
   methods: {
     switcherClick () {
@@ -77,7 +95,6 @@ export default {
   color: #227C9D;
 }
 .switcher-button{
-  display: inline-block;
   margin-right: 28px;
 }
 .label{

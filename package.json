@@ -15,7 +15,8 @@
     "animejs": "^3.2.1",
     "core-js": "^3.15.1",
     "nuxt": "^2.15.7",
-    "nuxt-animejs": "^1.2.2"
+    "nuxt-animejs": "^1.2.2",
+    "p5": "^1.4.0"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.14.7",
