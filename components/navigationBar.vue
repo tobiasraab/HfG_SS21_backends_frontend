@@ -8,10 +8,10 @@
           <NuxtLink class="nav-top-link menuLink" to="/">
             Verlauf
           </NuxtLink>
-          <NuxtLink class="nav-top-link menuLink projects" to="/projects">
+          <NuxtLink class="nav-top-link menuLink" to="/info">
             Info
           </NuxtLink>
-          <NuxtLink class="nav-top-link menuLink" to="/contact">
+          <NuxtLink class="nav-top-link menuLink" to="/settings">
             Einstellungen
           </NuxtLink>
         </div>
@@ -28,10 +28,10 @@
         <NuxtLink id="navSideLinkAbout" class="nav-side-link menuLink" to="/">
           Entwicklung
         </NuxtLink>
-        <NuxtLink id="navSideLinkProjects" class="nav-side-link menuLink projects" to="/projects">
+        <NuxtLink id="navSideLinkProjects" class="nav-side-link menuLink " to="/info">
           Info
         </NuxtLink>
-        <NuxtLink id="navSideLinkContact" class="nav-side-link menuLink" to="/contact">
+        <NuxtLink id="navSideLinkContact" class="nav-side-link menuLink" to="/settings">
           Einstellungen
         </NuxtLink>
       </div>
@@ -102,7 +102,7 @@ export default {
 
 <style scoped>
   .navTopMenu-currentSite {
-    color: #223127;
+    color: #ffffff;
     font-family: "silkamedium", sans-serif;
     font-size: 18px;
     line-height: 64px;
@@ -111,7 +111,7 @@ export default {
 
   .navSideMenu-currentSite {
     position: absolute;
-    color: #223127;
+    color: #ffffff;
     font-family: "silkamedium", sans-serif;
     font-size: 18px;
     line-height: 64px;
@@ -150,11 +150,11 @@ export default {
     font-size: 18px;
     line-height: 64px;
 
-    color: #ffffff;
+    color: #F4DFC7;
   }
 
   .menuLink:hover {
-    color: #585481;
+    color: #ffffff;
     font-family: "silkabold";
   }
 
@@ -208,17 +208,11 @@ export default {
     font-size: 18px;
     line-height: 64px;
 
-    color: #ffffff;
+    color: #F4DFC7;
   }
 
   a.nuxt-link-exact-active {
-    color: #585481;
+    color: #ffffff;
     font-family: "silkabold";
   }
-
-  a.nuxt-link-active.projects {
-    color: #585481;
-    font-family: "silkabold";
-  }
-
 </style>

@@ -3,7 +3,7 @@ export default {
   head: {
     title: 'HfG_SS21_backends_frontend',
     htmlAttrs: {
-      lang: 'en'
+      lang: 'de'
     },
     meta: [
       { charset: 'utf-8' },
@@ -38,7 +38,9 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    // https://github.com/ivodolenc/nuxt-animejs
+    'nuxt-animejs'
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
