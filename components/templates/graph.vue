@@ -1,55 +1,48 @@
 <template>
-  <div>
-    <div id="graph_background" />
+  <div class="graph-background">
+    <client-only>
+      <VueApexCharts width="100%" height="100%" type="line" :options="options" :series="series" />
+    </client-only>
   </div>
 </template>
 
 <script>
-/* import p from 'p5' */
-
 export default {
   name: 'Graph',
+  components: {
+  },
   props: {
   },
   data () {
     return {
-      dotNumber: 20
+      series: [{
+        name: 'Rest',
+        data: [30, 40, 45, 50, 49, 60, 70, 91, 45, 50, 49, 70]
+      },
+      {
+        name: 'Bio',
+        data: [35, 41, 62, 42, 13, 18, 29, 37, 36, 51, 32, 35]
+      }],
+      options: {
+        chart: {
+          id: 'vuechart-example'
+        },
+        xaxis: {
+          categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dez']
+        }
+      }
     }
   },
   mounted () {
-    /* let speed = 2
-    let posX = 0
-
-    // NOTE: Set up is here
-    p.setup = () => {
-      p.createCanvas(500, 500)
-      p.ellipse(p.width / 2, p.height / 2, 500, 500)
-    }
-    // NOTE: Draw is here
-    p.draw = () => {
-      p.background(0)
-      const degree = p.frameCount * 3
-      const y = p.sin(p.radians(degree)) * 50
-
-      p.push()
-      p.translate(0, p.height / 2)
-      p.ellipse(posX, y, 50, 50)
-      p.pop()
-      posX += speed
-
-      if (posX > p.width || posX < 0) {
-        speed *= -1
-      }
-    } */
   }
 }
 </script>
 
 <style scoped>
-#graph_background{
+.graph-background{
     height: 100%;
     width: 100%;
-    background-color: #F4DFC7;
+    background-color: #ffffff;
 }
 .graph_dot{
     background-color: red;
