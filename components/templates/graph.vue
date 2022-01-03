@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   name: 'Graph',
   components: {
@@ -15,25 +16,70 @@ export default {
   },
   data () {
     return {
-      series: [{
-        name: 'Rest',
-        data: [30, 40, 45, 50, 49, 60, 70, 91, 45, 50, 49, 70]
-      },
-      {
-        name: 'Bio',
-        data: [35, 41, 62, 42, 13, 18, 29, 37, 36, 51, 32, 35]
-      }],
       options: {
         chart: {
           id: 'vuechart-example'
         },
         xaxis: {
-          categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dez']
+          categories: []
         }
+      },
+      series: []
+    }
+  },
+  computed: {
+    ...mapState(['data'])
+  },
+  watch: {
+    data: {
+      deep: true,
+      handler () {
+        this.buildGraph()
       }
     }
   },
   mounted () {
+  },
+  methods: {
+    buildGraph () {
+      // reset chart data
+      this.options = { xaxis: { categories: [] } }
+      this.series = []
+
+      // build Chart of trash
+      if (this.$store.state.data) {
+        const GRAPHDATA = this.$store.state.data
+        const SERIE = {
+          name: 'Müll',
+          data: []
+        }
+        const ARR = []
+
+        // combine all data into a date array and a value array
+        for (let i = 0; i < GRAPHDATA.length; i++) {
+          // build value array
+          SERIE.data.push(GRAPHDATA[i].weight)
+
+          // get dates
+          const DATE = new Date(GRAPHDATA[i].createdAt)
+          const DAY = DATE.getDay()
+          const MONTH = DATE.getMonth()
+          const YEAR = DATE.getFullYear()
+
+          // build date string
+          const AXISDATE = DAY.toString() + '.' + MONTH.toString() + '.' + YEAR.toString()
+
+          // build date array
+          ARR.push(AXISDATE)
+        }
+
+        // add new trash serie to existing series
+        this.series.push(SERIE)
+
+        // change xaxis dates
+        this.options = { xaxis: { categories: ARR } }
+      }
+    }
   }
 }
 </script>
