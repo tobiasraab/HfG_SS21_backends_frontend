@@ -10,12 +10,17 @@ export const state = () => ({
   },
   bar: {
     timeFormat: undefined,
-    max: 8000,
-    progress: 5000
-  }
+    maxMonth: 1000,
+    maxYear: 12000,
+    progress: 0
+  },
+  data: {}
 })
 
 export const mutations = {
+  updateData (state, data) {
+    state.data = data
+  },
   updateGraphYear (state, data) {
     state.graph.year = data
   },
