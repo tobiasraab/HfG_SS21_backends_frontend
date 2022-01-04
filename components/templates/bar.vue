@@ -31,14 +31,11 @@ export default {
   },
   watch: {
     timeFormat: {
-      deep: true,
       handler () {
-        console.log('CAAAAAAAAAAAALL')
         this.apiCall()
       }
     },
     progress: {
-      deep: true,
       handler () {
         this.buildBar()
       }
@@ -46,7 +43,6 @@ export default {
   },
   mounted () {
     this.apiCall()
-    this.buildBar()
   },
   methods: {
     apiCall () {
@@ -84,7 +80,7 @@ export default {
           this.$store.commit('updateBarProgress', totalWeight)
         })
         .catch((err) => {
-          console.log('ERROR_APICALL: ', err)
+          console.error('ERROR_APICALL: ', err)
         })
     },
     buildBar () {

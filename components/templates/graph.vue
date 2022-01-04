@@ -16,6 +16,9 @@ export default {
   },
   data () {
     return {
+      dataLenght: undefined,
+      limitYear: 1200,
+      limitMonth: 100,
       options: {
         chart: {
           id: 'vuechart-example'
@@ -24,27 +27,69 @@ export default {
           categories: []
         }
       },
+      colors: ['#000000', '#247BA0'],
       series: []
     }
   },
   computed: {
-    ...mapState(['data'])
+    ...mapState({
+      data: state => state.data,
+      limit: state => state.graph.checkedLimit
+    })
   },
   watch: {
     data: {
-      deep: true,
-      handler () {
+      handler (oldVal, newVal) {
         this.buildGraph()
+      }
+    },
+    limit: {
+      handler () {
+        // only build limit if selected
+        if (this.limit[0] === 'Grenzwert') {
+          this.buildLimit(true)
+        } else {
+          this.buildLimit(false)
+        }
       }
     }
   },
-  mounted () {
-  },
   methods: {
+    buildLimit (buildLimit) {
+      // if true: build limit line
+      if (buildLimit) {
+        const SERIE = {
+          name: 'limit',
+          data: []
+        }
+
+        // create all Values for limit line
+        for (let i = 0; i < this.dataLenght; i++) {
+          SERIE.data.push(this.limitYear)
+        }
+
+        // add limit serie to other series
+        this.series.push(SERIE)
+      } else { // if false delete limit line
+        // find Limit Serie
+        for (let i = 0; i < this.series.length; i++) {
+          if (this.series[i].name === 'limit') {
+            // delete limit serie
+            this.series.splice(i, 1)
+          }
+        }
+      }
+    },
     buildGraph () {
       // reset chart data
       this.options = { xaxis: { categories: [] } }
-      this.series = []
+      // find Müll Serie
+      for (let i = 0; i < this.series.length; i++) {
+        if (this.series[i].name === 'Müll') {
+          // delete Müll serie
+          this.series.splice(i, 1)
+        }
+      }
 
       // build Chart of trash
       if (this.$store.state.data) {
@@ -72,12 +117,20 @@ export default {
           // build date array
           ARR.push(AXISDATE)
         }
-
         // add new trash serie to existing series
         this.series.push(SERIE)
 
         // change xaxis dates
         this.options = { xaxis: { categories: ARR } }
+        console.log(this.options.xaxis.categories)
+        this.dataLenght = this.options.xaxis.categories.length
+
+        // build new limit line
+        this.buildLimit(false)
+        if (this.limit[0] === 'Grenzwert') {
+          console.log('build limit')
+          this.buildLimit(true)
+        }
       }
     }
   }
