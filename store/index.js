@@ -10,8 +10,8 @@ export const state = () => ({
   },
   bar: {
     timeFormat: undefined,
-    maxMonth: 1000,
-    maxYear: 12000,
+    maxMonth: 10,
+    maxYear: 120,
     progress: 0
   },
   data: {}

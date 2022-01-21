@@ -17,8 +17,8 @@ export default {
   data () {
     return {
       dataLenght: undefined,
-      limitYear: 1200,
-      limitMonth: 100,
+      limitYear: 120,
+      limitMonth: 10,
       options: {
         chart: {
           id: 'vuechart-example'
@@ -34,7 +34,8 @@ export default {
   computed: {
     ...mapState({
       data: state => state.data,
-      limit: state => state.graph.checkedLimit
+      limit: state => state.graph.checkedLimit,
+      month: state => state.graph.month
     })
   },
   watch: {
@@ -62,10 +63,16 @@ export default {
           name: 'limit',
           data: []
         }
-
         // create all Values for limit line
-        for (let i = 0; i < this.dataLenght; i++) {
-          SERIE.data.push(this.limitYear)
+        // limit for year view
+        if (this.month === 'Jahr') {
+          for (let i = 0; i < this.dataLenght; i++) {
+            SERIE.data.push(this.limitYear)
+          }
+        } else { // limit for month view
+          for (let i = 0; i < this.dataLenght; i++) {
+            SERIE.data.push(this.limitMonth)
+          }
         }
 
         // add limit serie to other series
@@ -99,11 +106,15 @@ export default {
           data: []
         }
         const ARR = []
-
+        console.log(GRAPHDATA)
         // combine all data into a date array and a value array
         for (let i = 0; i < GRAPHDATA.length; i++) {
           // build value array
-          SERIE.data.push(GRAPHDATA[i].weight)
+          let value = 0
+          for (let k = 0; k <= i; k++) {
+            value = value + GRAPHDATA[k].weight
+          }
+          SERIE.data.push(value)
 
           // get dates
           const DATE = new Date(GRAPHDATA[i].createdAt)

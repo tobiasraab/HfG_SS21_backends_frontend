@@ -2,11 +2,11 @@
   <div>
     <div id="bar_background" />
     <h3 id="bar_top">
-      {{ ((barMax - $store.state.bar.progress)/1000).toFixed(3) + " kg" }}
+      {{ (barMax - $store.state.bar.progress).toFixed(2) + " kg" }}
     </h3>
     <div id="bar" />
     <h3 id="bar_bottom">
-      {{ ($store.state.bar.progress/1000).toFixed(3) + " kg" }}
+      {{ ($store.state.bar.progress).toFixed(2) + " kg" }}
     </h3>
   </div>
 </template>
@@ -37,7 +37,7 @@ export default {
     },
     progress: {
       handler () {
-        this.buildBar()
+        /* this.buildBar() */
       }
     }
   },
@@ -53,9 +53,9 @@ export default {
       const CURRENTYEAR = DATE.getFullYear()
 
       if (this.$store.state.bar.timeFormat === 'Monat') {
-        uri = 'http://159.122.174.54:31312/data?year=' + CURRENTYEAR.toString() + '&month=' + CURRENTMONTH.toString()
+        uri = 'http://169.51.205.11:31428/data?year=' + CURRENTYEAR.toString() + '&month=' + CURRENTMONTH.toString()
       } else {
-        uri = 'http://159.122.174.54:31312/data?year=' + CURRENTYEAR.toString()
+        uri = 'http://169.51.205.11:31428/data?year=' + CURRENTYEAR.toString()
       }
 
       this.$axios.$get(uri)
@@ -78,6 +78,8 @@ export default {
           }
           // save total weight
           this.$store.commit('updateBarProgress', totalWeight)
+
+          this.buildBar()
         })
         .catch((err) => {
           console.error('ERROR_APICALL: ', err)
