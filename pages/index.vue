@@ -158,9 +158,9 @@ export default {
           break
       }
       if (month === 0) {
-        uri = 'http://169.51.205.11:31428/data?year=' + YEAR.toString()
+        uri = 'http://' + process.env.PULLDATASERVERADRESS + '/data?year=' + YEAR.toString()
       } else {
-        uri = 'http://169.51.205.11:31428/data?year=' + YEAR.toString() + '&month=' + month.toString()
+        uri = 'http://' + process.env.PULLDATASERVERADRESS + '/data?year=' + YEAR.toString() + '&month=' + month.toString()
       }
 
       this.$axios.$get(uri)

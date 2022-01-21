@@ -53,9 +53,9 @@ export default {
       const CURRENTYEAR = DATE.getFullYear()
 
       if (this.$store.state.bar.timeFormat === 'Monat') {
-        uri = 'http://169.51.205.11:31428/data?year=' + CURRENTYEAR.toString() + '&month=' + CURRENTMONTH.toString()
+        uri = 'http://' + process.env.PULLDATASERVERADRESS + '/data?year=' + CURRENTYEAR.toString() + '&month=' + CURRENTMONTH.toString()
       } else {
-        uri = 'http://169.51.205.11:31428/data?year=' + CURRENTYEAR.toString()
+        uri = 'http://' + process.env.PULLDATASERVERADRESS + '/data?year=' + CURRENTYEAR.toString()
       }
 
       this.$axios.$get(uri)
