@@ -21,7 +21,7 @@ export default {
       limitMonth: 10,
       options: {
         chart: {
-          id: 'vuechart-example'
+          id: 'vue-chart'
         },
         xaxis: {
           categories: []
@@ -106,7 +106,7 @@ export default {
           data: []
         }
         const ARR = []
-        console.log(GRAPHDATA)
+
         // combine all data into a date array and a value array
         for (let i = 0; i < GRAPHDATA.length; i++) {
           // build value array
@@ -118,8 +118,8 @@ export default {
 
           // get dates
           const DATE = new Date(GRAPHDATA[i].createdAt)
-          const DAY = DATE.getDay()
-          const MONTH = DATE.getMonth()
+          const DAY = DATE.getDate()
+          const MONTH = DATE.getMonth() + 1 // months start at index 0
           const YEAR = DATE.getFullYear()
 
           // build date string
@@ -133,13 +133,11 @@ export default {
 
         // change xaxis dates
         this.options = { xaxis: { categories: ARR } }
-        console.log(this.options.xaxis.categories)
         this.dataLenght = this.options.xaxis.categories.length
 
         // build new limit line
         this.buildLimit(false)
         if (this.limit[0] === 'Grenzwert') {
-          console.log('build limit')
           this.buildLimit(true)
         }
       }

@@ -34,11 +34,6 @@ export default {
       handler () {
         this.apiCall()
       }
-    },
-    progress: {
-      handler () {
-        /* this.buildBar() */
-      }
     }
   },
   mounted () {
@@ -52,12 +47,14 @@ export default {
       const CURRENTMONTH = DATE.getMonth() + 1
       const CURRENTYEAR = DATE.getFullYear()
 
+      // set query params for api call
       if (this.$store.state.bar.timeFormat === 'Monat') {
-        uri = 'http://' + process.env.PULLDATASERVERADRESS + '/data?year=' + CURRENTYEAR.toString() + '&month=' + CURRENTMONTH.toString()
+        uri = 'http://169.51.205.11:31428/data?year=' + CURRENTYEAR.toString() + '&month=' + CURRENTMONTH.toString()
       } else {
-        uri = 'http://' + process.env.PULLDATASERVERADRESS + '/data?year=' + CURRENTYEAR.toString()
+        uri = 'http://169.51.205.11:31428/data?year=' + CURRENTYEAR.toString()
       }
 
+      // send api call
       this.$axios.$get(uri)
         .then((res) => {
           console.log('SUCCESS_APICALL: ', uri)
@@ -86,6 +83,7 @@ export default {
         })
     },
     buildBar () {
+      // anime.js library
       this.$anime({
         targets: '#bar',
         height: ((this.$store.state.bar.progress / this.barMax) * 100).toString() + '%',

@@ -42,10 +42,12 @@ export default {
   },
   watch: {
     selected () {
+      // send updated state to vuex store
       this.$store.commit(this.mutation, this.selected)
     }
   },
   mounted () {
+    // send updated state to vuex store
     this.$store.commit(this.mutation, this.selected)
   }
 }

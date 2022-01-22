@@ -44,10 +44,12 @@ export default {
   },
   watch: {
     checkedItems () {
+      // send updated state to vuex store
       this.$store.commit(this.mutation, this.checkedItems)
     }
   },
   mounted () {
+    // send updated state to vuex store
     this.$store.commit(this.mutation, this.checkedItems)
   }
 }

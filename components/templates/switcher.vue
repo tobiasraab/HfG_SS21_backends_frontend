@@ -48,6 +48,7 @@ export default {
   },
   watch: {
     toggleState () {
+    // send updated state to vuex store
       if (this.toggleState === true) {
         const data = 'relativ'
         this.$store.commit(this.mutation, data)
@@ -59,6 +60,7 @@ export default {
   },
   mounted () {
     const data = 'relativ'
+    // send init state to vuex store
     this.$store.commit(this.mutation, data)
   },
   methods: {
